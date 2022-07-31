@@ -1,0 +1,54 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==124326==ERROR: AddressSanitizer: SEGV on unknown address (pc 0x7f85be68161b bp 0x7ffdf5a4b640 sp 0x7ffdf5a4adc8 T0)
+==124326==The signal is caused by a READ memory access.
+==124326==Hint: this fault was caused by a dereference of a high value address (see register values below).  Dissassemble the provided pc to learn which register was used.
+    #0 0x7f85be68161b in AddressIsPoisoned ../../../../src/libsanitizer/asan/asan_mapping.h:407
+    #1 0x7f85be68161b in QuickCheckForUnpoisonedRegion ../../../../src/libsanitizer/asan/asan_interceptors_memintrinsics.h:31
+    #2 0x7f85be682283 in __interceptor_memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:827
+    #3 0x55ac0ab66f34 in AP4_DataBuffer::SetData(unsigned char const*, unsigned int) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x32f34)
+    #4 0x55ac0ab5d027 in AP4_AvccAtom::AP4_AvccAtom(unsigned int, unsigned char const*) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x29027)
+    #5 0x55ac0ab5d2cb in AP4_AvccAtom::Create(unsigned int, AP4_ByteStream&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x292cb)
+    #6 0x55ac0ab5a777 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x26777)
+    #7 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #8 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #9 0x55ac0ab86291 in AP4_VisualSampleEntry::AP4_VisualSampleEntry(unsigned int, unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x52291)
+    #10 0x55ac0ab7a679 in AP4_EncvSampleEntry::AP4_EncvSampleEntry(unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x46679)
+    #11 0x55ac0ab5a12d in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2612d)
+    #12 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #13 0x55ac0ab8d207 in AP4_StsdAtom::AP4_StsdAtom(unsigned int, unsigned char, unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x59207)
+    #14 0x55ac0ab8d54d in AP4_StsdAtom::Create(unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x5954d)
+    #15 0x55ac0ab598a2 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x258a2)
+    #16 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #17 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #18 0x55ac0ab60642 in AP4_ContainerAtom::Create(unsigned int, unsigned long long, bool, bool, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c642)
+    #19 0x55ac0ab58f81 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x24f81)
+    #20 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #21 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #22 0x55ac0ab60642 in AP4_ContainerAtom::Create(unsigned int, unsigned long long, bool, bool, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c642)
+    #23 0x55ac0ab58f81 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x24f81)
+    #24 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #25 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #26 0x55ac0ab60642 in AP4_ContainerAtom::Create(unsigned int, unsigned long long, bool, bool, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c642)
+    #27 0x55ac0ab58f81 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x24f81)
+    #28 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #29 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #30 0x55ac0ab603db in AP4_ContainerAtom::AP4_ContainerAtom(unsigned int, unsigned long long, bool, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c3db)
+    #31 0x55ac0ab93722 in AP4_TrakAtom::AP4_TrakAtom(unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x5f722)
+    #32 0x55ac0ab5955b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2555b)
+    #33 0x55ac0ab5b24b in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2724b)
+    #34 0x55ac0ab602c1 in AP4_ContainerAtom::ReadChildren(AP4_AtomFactory&, AP4_ByteStream&, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c2c1)
+    #35 0x55ac0ab603db in AP4_ContainerAtom::AP4_ContainerAtom(unsigned int, unsigned long long, bool, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x2c3db)
+    #36 0x55ac0ab720ff in AP4_MoovAtom::AP4_MoovAtom(unsigned int, AP4_ByteStream&, AP4_AtomFactory&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x3e0ff)
+    #37 0x55ac0ab5a857 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x26857)
+    #38 0x55ac0ab5afa7 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, AP4_Atom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x26fa7)
+    #39 0x55ac0ab6973d in AP4_File::ParseStream(AP4_ByteStream&, AP4_AtomFactory&, bool) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x3573d)
+    #40 0x55ac0ab6992f in AP4_File::AP4_File(AP4_ByteStream&, bool) (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x3592f)
+    #41 0x55ac0ab53116 in main (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x1f116)
+    #42 0x7f85be116d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+    #43 0x7f85be116e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f)
+    #44 0x55ac0ab53634 in _start (/workspace/test/validate/Bento4/cmakebuild/mp4tag+0x1f634)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV ../../../../src/libsanitizer/asan/asan_mapping.h:407 in AddressIsPoisoned
+==124326==ABORTING

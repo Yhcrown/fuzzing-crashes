@@ -1,0 +1,49 @@
+=================================================================
+==105621==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000014 at pc 0x7f6ffd9b4397 bp 0x7ffc5d804f40 sp 0x7ffc5d8046e8
+READ of size 8 at 0x602000000014 thread T0
+    #0 0x7f6ffd9b4396 in __interceptor_memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:827
+    #1 0x564248aba9dc in AP4_BitStream::WriteBytes(unsigned char const*, unsigned int) (/workspace/test/validate/Bento4/cmakebuild/avcinfo+0x69dc)
+    #2 0x564248ab673e in main (/workspace/test/validate/Bento4/cmakebuild/avcinfo+0x273e)
+    #3 0x7f6ffd448d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+    #4 0x7f6ffd448e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f)
+    #5 0x564248ab6904 in _start (/workspace/test/validate/Bento4/cmakebuild/avcinfo+0x2904)
+
+0x602000000014 is located 0 bytes to the right of 4-byte region [0x602000000010,0x602000000014)
+allocated by thread T0 here:
+    #0 0x7f6ffda30337 in operator new[](unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:102
+    #1 0x564248abb579 in AP4_DataBuffer::SetDataSize(unsigned int) (/workspace/test/validate/Bento4/cmakebuild/avcinfo+0x7579)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:827 in __interceptor_memcpy
+Shadow bytes around the buggy address:
+  0x0c047fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c047fff8000: fa fa[04]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==105621==ABORTING

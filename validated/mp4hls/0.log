@@ -1,0 +1,10 @@
+ERROR: failed to write samples (-12)
+
+=================================================================
+==37476==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 48 byte(s) in 1 object(s) allocated from:
+    #0 0x7f205a3cf1c7 in operator new(unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:99
+    #1 0x5609aa207154 in AP4_FileByteStream::Create(char const*, AP4_FileByteStream::Mode, AP4_ByteStream*&) (/workspace/test/validate/Bento4/cmakebuild/mp42hls+0x75154)
+
+SUMMARY: AddressSanitizer: 48 byte(s) leaked in 1 allocation(s).

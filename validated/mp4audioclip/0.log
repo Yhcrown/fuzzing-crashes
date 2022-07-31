@@ -1,0 +1,14 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==4241==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x556421b987bc bp 0x7ffd605fbf60 sp 0x7ffd605fbe28 T0)
+==4241==The signal is caused by a READ memory access.
+==4241==Hint: address points to the zero page.
+    #0 0x556421b987bc in AP4_Track::GetSampleIndexForTimeStampMs(unsigned int, unsigned int&) (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x227bc)
+    #1 0x556421b93f27 in main (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x1df27)
+    #2 0x7fd0a09a8d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+    #3 0x7fd0a09a8e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f)
+    #4 0x556421b94544 in _start (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x1e544)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x227bc) in AP4_Track::GetSampleIndexForTimeStampMs(unsigned int, unsigned int&)
+==4241==ABORTING

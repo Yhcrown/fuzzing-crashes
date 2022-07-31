@@ -1,0 +1,15 @@
+==3902==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x557efa43c2ce bp 0x000000000000 sp 0x7ffe91f96d90 T0)
+==3902==The signal is caused by a READ memory access.
+==3902==Hint: address points to the zero page.
+    #0 0x557efa43c2ce in AP4_StsdAtom::AP4_StsdAtom(AP4_SampleTable*) (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x602ce)
+    #1 0x557efa438079 in AP4_SampleTable::GenerateStblAtom(AP4_ContainerAtom*&) (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x5c079)
+    #2 0x557efa3fec70 in AP4_TrakAtom::AP4_TrakAtom(AP4_SampleTable*, unsigned int, char const*, unsigned int, unsigned long long, unsigned long long, unsigned long long, unsigned int, unsigned long long, unsigned short, char const*, unsigned int, unsigned int, unsigned short, unsigned short, int const*) (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x22c70)
+    #3 0x557efa3fdcc7 in AP4_Track::AP4_Track(AP4_Track::Type, AP4_SampleTable*, unsigned int, unsigned int, unsigned long long, unsigned int, unsigned long long, char const*, unsigned int, unsigned int, unsigned long long, unsigned long long) (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x21cc7)
+    #4 0x557efa3fa0a0 in main (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x1e0a0)
+    #5 0x7f921535ed8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f)
+    #6 0x7f921535ee3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f)
+    #7 0x557efa3fa544 in _start (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x1e544)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/test/validate/Bento4/cmakebuild/mp4audioclip+0x602ce) in AP4_StsdAtom::AP4_StsdAtom(AP4_SampleTable*)
+==3902==ABORTING

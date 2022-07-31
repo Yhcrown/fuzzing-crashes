@@ -1,0 +1,60 @@
+=================================================================
+==36161==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000116 at pc 0x562ccf94814e bp 0x7ffde0d9e870 sp 0x7ffde0d9e868
+READ of size 1 at 0x603000000116 thread T0
+    #0 0x562ccf94814d in AP4_HvccAtom::AP4_HvccAtom(unsigned int, unsigned char const*) (/workspace/test/validate/Bento4/check_build/mp4info+0x18f14d) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #1 0x562ccf944070 in AP4_HvccAtom::Create(unsigned int, AP4_ByteStream&) (/workspace/test/validate/Bento4/check_build/mp4info+0x18b070) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #2 0x562ccf9115b6 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x1585b6) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #3 0x562ccf91077a in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x15777a) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #4 0x562ccf90ffa4 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x156fa4) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #5 0x562ccf93f29b in AP4_File::ParseStream(AP4_ByteStream&, AP4_AtomFactory&, bool) (/workspace/test/validate/Bento4/check_build/mp4info+0x18629b) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #6 0x562ccf93f74a in AP4_File::AP4_File(AP4_ByteStream&, bool) (/workspace/test/validate/Bento4/check_build/mp4info+0x18674a) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #7 0x562ccf8e7139 in main (/workspace/test/validate/Bento4/check_build/mp4info+0x12e139) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #8 0x7f69861dbd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 89c3cb85f9e55046776471fed05ec441581d1969)
+    #9 0x7f69861dbe3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 89c3cb85f9e55046776471fed05ec441581d1969)
+    #10 0x562ccf826b44 in _start (/workspace/test/validate/Bento4/check_build/mp4info+0x6db44) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+
+0x603000000116 is located 0 bytes to the right of 22-byte region [0x603000000100,0x603000000116)
+allocated by thread T0 here:
+    #0 0x562ccf8e486d in operator new[](unsigned long) (/workspace/test/validate/Bento4/check_build/mp4info+0x12b86d) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #1 0x562ccf936e74 in AP4_DataBuffer::AP4_DataBuffer(unsigned int) (/workspace/test/validate/Bento4/check_build/mp4info+0x17de74) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #2 0x562ccf9115b6 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned int, unsigned int, unsigned long long, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x1585b6) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #3 0x562ccf91077a in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, unsigned long long&, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x15777a) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #4 0x562ccf90ffa4 in AP4_AtomFactory::CreateAtomFromStream(AP4_ByteStream&, AP4_Atom*&) (/workspace/test/validate/Bento4/check_build/mp4info+0x156fa4) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #5 0x562ccf93f29b in AP4_File::ParseStream(AP4_ByteStream&, AP4_AtomFactory&, bool) (/workspace/test/validate/Bento4/check_build/mp4info+0x18629b) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #6 0x562ccf93f74a in AP4_File::AP4_File(AP4_ByteStream&, bool) (/workspace/test/validate/Bento4/check_build/mp4info+0x18674a) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #7 0x562ccf8e7139 in main (/workspace/test/validate/Bento4/check_build/mp4info+0x12e139) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc)
+    #8 0x7f69861dbd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 89c3cb85f9e55046776471fed05ec441581d1969)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/workspace/test/validate/Bento4/check_build/mp4info+0x18f14d) (BuildId: 2a498dc514913e631c20a701d49370776d4e7fcc) in AP4_HvccAtom::AP4_HvccAtom(unsigned int, unsigned char const*)
+Shadow bytes around the buggy address:
+  0x0c067fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff8000: fa fa 00 00 00 fa fa fa 00 00 00 fa fa fa 00 00
+  0x0c067fff8010: 00 fa fa fa 00 00 00 fa fa fa 00 00 00 fa fa fa
+=>0x0c067fff8020: 00 00[06]fa fa fa 00 00 06 fa fa fa fa fa fa fa
+  0x0c067fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8070: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==36161==ABORTING

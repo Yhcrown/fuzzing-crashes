@@ -1,0 +1,22 @@
+avprobe version v13_dev0-1648-gc4642788e, Copyright (c) 2007-2018 the Libav developers
+  built on Aug  6 2022 06:29:46 with Ubuntu clang version 14.0.6-++20220622053133+f28c006a5895-1~exp1~20220622173215.107
+[aac @ 0x61a000000080] Format detected only with low score of 1, misdetection possible!
+[aac @ 0x619000002880] Sample rate index in program config element does not match the sample rate index configured by the container.
+[aac @ 0x619000002880] Reserved bit set.
+[aac @ 0x619000002880] Number of bands (12) exceeds limit (8).
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==115227==ERROR: AddressSanitizer: SEGV on unknown address 0x7fc333200000 (pc 0x561d4f89bcc0 bp 0x7fffeb895590 sp 0x7fffeb894df8 T0)
+==115227==The signal is caused by a WRITE memory access.
+    #0 0x561d4f89bcc0 in ff_sbr_hf_gen_sse.loop2 libavutil/x86/x86util.asm:1229
+    #1 0x561d4efeecf9 in spectral_to_sample /workspace/libav/libavcodec/aacdec.c:2691:25
+    #2 0x561d4efd10f0 in aac_decode_frame_int /workspace/libav/libavcodec/aacdec.c:2944:5
+    #3 0x561d4efbe8fe in aac_decode_frame /workspace/libav/libavcodec/aacdec.c:3010:15
+    #4 0x561d4dd2e6db in decode_simple_internal /workspace/libav/libavcodec/decode.c:336:15
+    #5 0x561d4dd2e6db in decode_simple_receive_frame /workspace/libav/libavcodec/decode.c:387:15
+    #6 0x561d4dd2e6db in decode_receive_frame_internal /workspace/libav/libavcodec/decode.c:405:15
+    #7 0x561d4dd2e1c7 in avcodec_send_packet /workspace/libav/libavcodec/decode.c:466:15
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV libavutil/x86/x86util.asm:1229 in ff_sbr_hf_gen_sse.loop2
+==115227==ABORTING

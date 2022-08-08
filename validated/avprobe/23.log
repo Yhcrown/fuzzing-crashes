@@ -1,0 +1,60 @@
+avprobe version v13_dev0-1648-gc4642788e, Copyright (c) 2007-2018 the Libav developers
+  built on Aug  6 2022 06:29:46 with Ubuntu clang version 14.0.6-++20220622053133+f28c006a5895-1~exp1~20220622173215.107
+[aac @ 0x61a000000080] Format detected only with low score of 1, misdetection possible!
+[aac @ 0x619000002880] Sample rate index in program config element does not match the sample rate index configured by the container.
+[aac @ 0x619000002880] Reserved bit set.
+[aac @ 0x619000002880] Number of scalefactor bands in group (13) exceeds limit (12).
+=================================================================
+==115536==ERROR: AddressSanitizer: global-buffer-overflow on address 0x55f4b4ef771a at pc 0x55f4b41234ff bp 0x7ffdf17cd870 sp 0x7ffdf17cd868
+READ of size 2 at 0x55f4b4ef771a thread T0
+    #0 0x55f4b41234fe in spectral_to_sample /workspace/libav/libavcodec/aacdec.c
+    #1 0x55f4b41020f0 in aac_decode_frame_int /workspace/libav/libavcodec/aacdec.c:2944:5
+    #2 0x55f4b40ef8fe in aac_decode_frame /workspace/libav/libavcodec/aacdec.c:3010:15
+    #3 0x55f4b2e5f6db in decode_simple_internal /workspace/libav/libavcodec/decode.c:336:15
+    #4 0x55f4b2e5f6db in decode_simple_receive_frame /workspace/libav/libavcodec/decode.c:387:15
+    #5 0x55f4b2e5f6db in decode_receive_frame_internal /workspace/libav/libavcodec/decode.c:405:15
+    #6 0x55f4b2e5f1c7 in avcodec_send_packet /workspace/libav/libavcodec/decode.c:466:15
+    #7 0x55f4b2c4f700 in try_decode_frame /workspace/libav/libavformat/utils.c:1950:19
+    #8 0x55f4b2c49579 in avformat_find_stream_info /workspace/libav/libavformat/utils.c:2459:9
+    #9 0x55f4b2934db0 in open_input_file /workspace/libav/avtools/avprobe.c:924:16
+    #10 0x55f4b2934db0 in probe_file /workspace/libav/avtools/avprobe.c:1002:11
+    #11 0x55f4b2934db0 in main /workspace/libav/avtools/avprobe.c:1236:11
+    #12 0x7f0461890d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #13 0x7f0461890e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #14 0x55f4b2868f04 in _start (/workspace/libav/bin/avprobe+0x3d4f04) (BuildId: b61d297720f7a1a7f5000d66fb0a47c64c08e831)
+
+0x55f4b4ef771a is located 38 bytes to the left of global variable 'swb_offset_128_48' defined in 'libavcodec/aactab.c:1141:23' (0x55f4b4ef7740) of size 30
+0x55f4b4ef771a is located 0 bytes to the right of global variable 'swb_offset_128_96' defined in 'libavcodec/aactab.c:1102:23' (0x55f4b4ef7700) of size 26
+SUMMARY: AddressSanitizer: global-buffer-overflow /workspace/libav/libavcodec/aacdec.c in spectral_to_sample
+Shadow bytes around the buggy address:
+  0x0abf169d6e90: 00 02 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x0abf169d6ea0: 00 04 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x0abf169d6eb0: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 f9 f9 f9
+  0x0abf169d6ec0: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 04 f9 f9
+  0x0abf169d6ed0: f9 f9 f9 f9 00 00 00 00 00 00 00 06 f9 f9 f9 f9
+=>0x0abf169d6ee0: 00 00 00[02]f9 f9 f9 f9 00 00 00 06 f9 f9 f9 f9
+  0x0abf169d6ef0: 00 00 00 00 f9 f9 f9 f9 00 00 00 00 f9 f9 f9 f9
+  0x0abf169d6f00: 00 00 00 00 f9 f9 f9 f9 00 05 f9 f9 00 05 f9 f9
+  0x0abf169d6f10: 00 05 f9 f9 00 05 f9 f9 00 00 00 00 00 00 00 00
+  0x0abf169d6f20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0abf169d6f30: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==115536==ABORTING

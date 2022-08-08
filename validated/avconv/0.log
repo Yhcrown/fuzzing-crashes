@@ -1,0 +1,65 @@
+avconv version v13_dev0-1648-gc4642788e, Copyright (c) 2000-2018 the Libav developers
+  built on Aug  6 2022 06:29:46 with Ubuntu clang version 14.0.6-++20220622053133+f28c006a5895-1~exp1~20220622173215.107
+[aac @ 0x61a000000080] Format detected only with low score of 1, misdetection possible!
+[aac @ 0x619000002880] Sample rate index in program config element does not match the sample rate index configured by the container.
+[aac @ 0x619000002880] Number of bands (43) exceeds limit (38).
+[aac @ 0x619000002880] channel element 1.7 is not allocated
+[aac @ 0x619000002880] Sample rate index in program config element does not match the sample rate index configured by the container.
+[aac @ 0x619000002880] Reserved bit set.
+[aac @ 0x619000002880] Number of scalefactor bands in group (14) exceeds limit (12).
+[aac @ 0x619000002880] channel element 0.0 is not allocated
+=================================================================
+==21992==ERROR: AddressSanitizer: global-buffer-overflow on address 0x560a808cd29a at pc 0x560a7fae0a9f bp 0x7ffc7aa3ee30 sp 0x7ffc7aa3ee28
+READ of size 2 at 0x560a808cd29a thread T0
+    #0 0x560a7fae0a9e in spectral_to_sample /workspace/libav/libavcodec/aacdec.c
+    #1 0x560a7fabf690 in aac_decode_frame_int /workspace/libav/libavcodec/aacdec.c:2944:5
+    #2 0x560a7faace9e in aac_decode_frame /workspace/libav/libavcodec/aacdec.c:3010:15
+    #3 0x560a7e81cc7b in decode_simple_internal /workspace/libav/libavcodec/decode.c:336:15
+    #4 0x560a7e81cc7b in decode_simple_receive_frame /workspace/libav/libavcodec/decode.c:387:15
+    #5 0x560a7e81cc7b in decode_receive_frame_internal /workspace/libav/libavcodec/decode.c:405:15
+    #6 0x560a7e81c767 in avcodec_send_packet /workspace/libav/libavcodec/decode.c:466:15
+    #7 0x560a7e613e80 in try_decode_frame /workspace/libav/libavformat/utils.c:1950:19
+    #8 0x560a7e60dcf9 in avformat_find_stream_info /workspace/libav/libavformat/utils.c:2459:9
+    #9 0x560a7e244d8d in open_input_file /workspace/libav/avtools/avconv_opt.c:821:11
+    #10 0x560a7e24380c in open_files /workspace/libav/avtools/avconv_opt.c:2467:15
+    #11 0x560a7e243125 in avconv_parse_options /workspace/libav/avtools/avconv_opt.c:2504:11
+    #12 0x560a7e27753b in main /workspace/libav/avtools/avconv.c:2953:11
+    #13 0x7f1c5e5a6d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #14 0x7f1c5e5a6e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #15 0x560a7e184fd4 in _start (/workspace/libav/bin/avconv+0x41bfd4) (BuildId: 4a9e13a331e943d94360b9351b9f3644bbbaad6e)
+
+0x560a808cd29a is located 38 bytes to the left of global variable 'swb_offset_128_48' defined in 'libavcodec/aactab.c:1141:23' (0x560a808cd2c0) of size 30
+0x560a808cd29a is located 0 bytes to the right of global variable 'swb_offset_128_96' defined in 'libavcodec/aactab.c:1102:23' (0x560a808cd280) of size 26
+SUMMARY: AddressSanitizer: global-buffer-overflow /workspace/libav/libavcodec/aacdec.c in spectral_to_sample
+Shadow bytes around the buggy address:
+  0x0ac1d0111a00: 00 02 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x0ac1d0111a10: 00 04 f9 f9 f9 f9 f9 f9 00 00 00 00 00 00 00 00
+  0x0ac1d0111a20: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 f9 f9 f9
+  0x0ac1d0111a30: f9 f9 f9 f9 00 00 00 00 00 00 00 00 00 04 f9 f9
+  0x0ac1d0111a40: f9 f9 f9 f9 00 00 00 00 00 00 00 06 f9 f9 f9 f9
+=>0x0ac1d0111a50: 00 00 00[02]f9 f9 f9 f9 00 00 00 06 f9 f9 f9 f9
+  0x0ac1d0111a60: 00 00 00 00 f9 f9 f9 f9 00 00 00 00 f9 f9 f9 f9
+  0x0ac1d0111a70: 00 00 00 00 f9 f9 f9 f9 00 05 f9 f9 00 05 f9 f9
+  0x0ac1d0111a80: 00 05 f9 f9 00 05 f9 f9 00 00 00 00 00 00 00 00
+  0x0ac1d0111a90: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0ac1d0111aa0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==21992==ABORTING

@@ -1,0 +1,77 @@
+avconv version v13_dev0-1648-gc4642788e, Copyright (c) 2000-2018 the Libav developers
+  built on Aug  6 2022 06:29:46 with Ubuntu clang version 14.0.6-++20220622053133+f28c006a5895-1~exp1~20220622173215.107
+[avi @ 0x61a000000080] Something went wrong during header parsing, I will ignore it and try to continue anyway.
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:0 (0x61d000008ec0)
+[mjpeg @ 0x619000002880] mjpeg_decode_dc: bad vlc: 0:1 (0x61d000008ed8)
+    Last message repeated 1 times
+[mjpeg @ 0x619000002880] Lossless RGB image without 3 components is not implemented. Update your Libav version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[mjpeg @ 0x619000002880] If you want to help, upload a sample of this file to ftp://upload.libav.org/incoming/ and contact the libav-devel mailing list.
+[mjpeg @ 0x619000002880] Lossless RGB image without 3 components is not implemented. Update your Libav version to the newest one from Git. If the problem still occurs, it means that your file has a feature which has not been implemented.
+[mjpeg @ 0x619000002880] If you want to help, upload a sample of this file to ftp://upload.libav.org/incoming/ and contact the libav-devel mailing list.
+[mjpeg @ 0x619000002880] error count: 268435457
+[mjpeg @ 0x619000002880] error y=0 x=0
+[mjpeg @ 0x619000002880] error count: 268435491
+[mjpeg @ 0x619000002880] error y=0 x=0
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==49702==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x55923bbe02fc bp 0x0000000000ff sp 0x7ffdff7aebf0 T0)
+==49702==The signal is caused by a WRITE memory access.
+==49702==Hint: address points to the zero page.
+    #0 0x55923bbe02fc in put_pixels_clamped_c /workspace/libav/libavcodec/idctdsp.c:92:19
+    #1 0x55923c78548e in ff_simple_idct_put_mmx /workspace/libav/libavcodec/x86/simple_idct.c:910:5
+    #2 0x55923bd3a40d in mjpeg_decode_scan_progressive_ac /workspace/libav/libavcodec/mjpegdec.c:1038:21
+    #3 0x55923bd3a40d in ff_mjpeg_decode_sos /workspace/libav/libavcodec/mjpegdec.c:1164:24
+    #4 0x55923bd406f1 in ff_mjpeg_decode_frame /workspace/libav/libavcodec/mjpegdec.c:1646:24
+    #5 0x55923b56dc7b in decode_simple_internal /workspace/libav/libavcodec/decode.c:336:15
+    #6 0x55923b56dc7b in decode_simple_receive_frame /workspace/libav/libavcodec/decode.c:387:15
+    #7 0x55923b56dc7b in decode_receive_frame_internal /workspace/libav/libavcodec/decode.c:405:15
+    #8 0x55923b56d767 in avcodec_send_packet /workspace/libav/libavcodec/decode.c:466:15
+    #9 0x55923b364e80 in try_decode_frame /workspace/libav/libavformat/utils.c:1950:19
+    #10 0x55923b35ecf9 in avformat_find_stream_info /workspace/libav/libavformat/utils.c:2459:9
+    #11 0x55923af95d8d in open_input_file /workspace/libav/avtools/avconv_opt.c:821:11
+    #12 0x55923af9480c in open_files /workspace/libav/avtools/avconv_opt.c:2467:15
+    #13 0x55923af94125 in avconv_parse_options /workspace/libav/avtools/avconv_opt.c:2504:11
+    #14 0x55923afc853b in main /workspace/libav/avtools/avconv.c:2953:11
+    #15 0x7f9ba8192d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #16 0x7f9ba8192e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #17 0x55923aed5fd4 in _start (/workspace/libav/bin/avconv+0x41bfd4) (BuildId: 4a9e13a331e943d94360b9351b9f3644bbbaad6e)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /workspace/libav/libavcodec/idctdsp.c:92:19 in put_pixels_clamped_c
+==49702==ABORTING

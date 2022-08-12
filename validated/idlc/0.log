@@ -1,0 +1,66 @@
+/eclibuse<![IGNORE[������������������������������������\\\\\\����t����com@A@T@@@@@@X@cyclonmast�
+
+
+
+
+
+
+
+
+
+#
+/workspace/crash/cyclonedds/check_build/bin/idlc/0:13679:17: Extra tokens at end of line marker
+/workspace/crash/cyclonedds/check_build/bin/idlc/0:13675:6: Unrecognized annotation: @x
+=================================================================
+==44911==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6310000007ff at pc 0x5613cbe57878 bp 0x7ffe853225c0 sp 0x7ffe853225b8
+READ of size 1 at 0x6310000007ff thread T0
+    #0 0x5613cbe57877 in get_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1960:13
+    #1 0x5613cbe51e89 in parse_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1653:15
+    #2 0x5613cbe4ec6a in get_ch /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1580:13
+    #3 0x5613cbe47117 in mcpp_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:637:17
+    #4 0x5613cbe47117 in mcpp_lib_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:430:5
+    #5 0x5613cbe21579 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:331:9
+    #6 0x5613cbe20c84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #7 0x7ff2304e8d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #8 0x7ff2304e8e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #9 0x5613cbd628e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+0x6310000007ff is located 1 bytes to the left of 65536-byte region [0x631000000800,0x631000010800)
+allocated by thread T0 here:
+    #0 0x5613cbde572e in __interceptor_malloc (/workspace/test/cyclonedds/bin/idlc+0xc672e) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x5613cbe53e9e in xmalloc /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:2341:28
+    #2 0x5613cbe53e9e in get_file /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:2287:20
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1960:13 in get_line
+Shadow bytes around the buggy address:
+  0x0c627fff80a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c627fff80b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c627fff80c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c627fff80d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c627fff80e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c627fff80f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa[fa]
+  0x0c627fff8100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c627fff8110: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c627fff8120: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c627fff8130: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c627fff8140: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==44911==ABORTING

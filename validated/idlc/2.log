@@ -1,0 +1,85 @@
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:2: error: Unterminated string literal, skipped the line
+    <CycloneDDS xml��="http"UTF-8" ->
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:3: warning: End of input with no newline, supplemented newline
+    <CycloneDD="Ui="hconfig
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:4: warning: Illegal multi-byte character sequence "�" in quotation
+    <Cy'loneDcS xml��="httos://cdds.io/confYYYYYYYng="Ui="http://www.w3.orIDREF1/X�LSchemP-instance" xsi:schemaLocation=
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:4: warning: Illegal multi-byte character sequence "=" in quotation
+    <Cy'loneDcS xml��="httos://cdds.io/confYYYYYYYng="Ui="http://www.w3.orIDREF1/X�LSchemP-instance" xsi:schemaLocation=
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:4: warning: Illegal multi-byte character sequence "L" in quotation
+    <Cy'loneDcS xml��="httos://cdds.io/confYYYYYYYng="Ui="http://www.w3.orIDREF1/X�LSchemP-instance" xsi:schemaLocation=
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:4: error: Unterminated character constant 'loneDcS xml��="httos://cdds.io/confYYYYYYYng="Ui="http://www.w3.orIDREF1/X�LSchemP-instance" xsi:schemaLocation=, skipped the line
+    <Cy'loneDcS xml��="httos://cdds.io/confYYYYYYYng="Ui="http://www.w3.orIDREF1/X�LSchemP-instance" xsi:schemaLocation=
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:5: warning: End of input with no newline, supplemented newline
+    https://wi/etb/cyclo
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: End of input with no newline, supplemented newline
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx01 in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal multi-byte character sequence "e" in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx18 in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx02 in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx18 in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx18 in quotation
+    <Cy'loneDDS�eV
+/workspace/crash/cyclonedds/check_build/bin/idlc/2:6: warning: Illegal control character 0lx18 in quotation
+    <Cy'loneDDS�eV
+=================================================================
+==51928==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6030000011f2 at pc 0x563146ddecde bp 0x7ffea7d356d0 sp 0x7ffea7d356c8
+WRITE of size 1 at 0x6030000011f2 thread T0
+    #0 0x563146ddecdd in do_msg /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:2522:23
+    #1 0x563146dd9349 in scan_quote /workspace/test/cyclonedds/src/tools/idlpp/src/support.c
+    #2 0x563146ddb1c5 in parse_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1757:22
+    #3 0x563146dd7c6a in get_ch /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1580:13
+    #4 0x563146dcf4a9 in mcpp_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:637:17
+    #5 0x563146dcf4a9 in mcpp_lib_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:430:5
+    #6 0x563146daa579 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:331:9
+    #7 0x563146da9c84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #8 0x7f52e36e8d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #9 0x7f52e36e8e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #10 0x563146ceb8e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+0x6030000011f2 is located 0 bytes to the right of 18-byte region [0x6030000011e0,0x6030000011f2)
+allocated by thread T0 here:
+    #0 0x563146d6e72e in __interceptor_malloc (/workspace/test/cyclonedds/bin/idlc+0xc672e) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x563146ddd785 in do_msg /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:2465:35
+    #2 0x563146dd9349 in scan_quote /workspace/test/cyclonedds/src/tools/idlpp/src/support.c
+    #3 0x563146ddb1c5 in parse_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1757:22
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:2522:23 in do_msg
+Shadow bytes around the buggy address:
+  0x0c067fff81e0: fa fa fd fd fd fa fa fa fd fd fd fd fa fa fd fd
+  0x0c067fff81f0: fd fa fa fa fd fd fd fa fa fa fd fd fd fd fa fa
+  0x0c067fff8200: fd fd fd fa fa fa fd fd fd fd fa fa fd fd fd fd
+  0x0c067fff8210: fa fa fd fd fd fd fa fa fd fd fd fd fa fa fd fd
+  0x0c067fff8220: fd fd fa fa fd fd fd fd fa fa fd fd fd fd fa fa
+=>0x0c067fff8230: fd fd fd fd fa fa fd fd fd fd fa fa 00 00[02]fa
+  0x0c067fff8240: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8250: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8260: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8270: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==51928==ABORTING

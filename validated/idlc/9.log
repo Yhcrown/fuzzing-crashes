@@ -1,0 +1,59 @@
+/workspace/crash/cyclonedds/check_build/bin/idlc/9:1: warning: End of input with no newline, supplemented newline
+     111111111111111111111111111111111111111111111111111Q111111111111111111@@11111111111111111111111111111111111    @x(((((((#(((((((((((((((((((((((((((s*//cJds.io/configc@A@�@@@@11X@#1"=00000��������((((((,(((((((((((11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111E111111111111111111111111111111111111111111111111111111�111111111111111111111111111111111111111111111111111111111111111111111111d11111111111111111111111111111111111Q1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111112111111111111111111111111111111111111111111�1111111111111111111111111111111111111111111111111111111111111E1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111d11111111111111111111111111111111111Q1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111�111111111111111111111111111111111111111111111111111111111111111.org/20ocac]  /*tion="hta
+/workspace/crash/cyclonedds/check_build/bin/idlc/9:4:1059: Extra tokens at end of line marker
+=================================================================
+==74429==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x7ffd71beef24 at pc 0x5633c9b8e88d bp 0x7ffd71beead0 sp 0x7ffd71bee270
+WRITE of size 13 at 0x7ffd71beef24 thread T0
+    #0 0x5633c9b8e88c in __interceptor_vsnprintf (/workspace/test/cyclonedds/bin/idlc+0x6588c) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x7f0778f7ca48 in idl_log /workspace/test/cyclonedds/src/idl/src/processor.c:259:9
+    #2 0x7f0778f7cc7a in idl_error /workspace/test/cyclonedds/src/idl/src/processor.c:284:3
+    #3 0x7f0778fa40fd in idl_yyerror /workspace/test/cyclonedds/src/idl/src/parser.y:1202:3
+    #4 0x7f0778fa40fd in idl_yypush_parse /workspace/test/cyclonedds/src/idl/parser.c:3551:7
+    #5 0x7f0778f7d214 in parse_grammar /workspace/test/cyclonedds/src/idl/src/processor.c:327:11
+    #6 0x7f0778f7d214 in idl_parse /workspace/test/cyclonedds/src/idl/src/processor.c:535:15
+    #7 0x5633c9c2b730 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:372:11
+    #8 0x5633c9c2ac84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #9 0x7f0778872d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #10 0x7f0778872e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #11 0x5633c9b6c8e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+Address 0x7ffd71beef24 is located in stack of thread T0 at offset 1092 in frame
+    #0 0x7f0778f7c85f in idl_log /workspace/test/cyclonedds/src/idl/src/processor.c:240
+
+  This frame has 1 object(s):
+    [32, 1056) 'buf' (line 241) <== Memory access at offset 1092 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow (/workspace/test/cyclonedds/bin/idlc+0x6588c) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e) in __interceptor_vsnprintf
+Shadow bytes around the buggy address:
+  0x10002e375d90: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375da0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375db0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375dc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375dd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x10002e375de0: f3 f3 f3 f3[f3]f3 f3 f3 f3 f3 f3 f3 f3 f3 f3 f3
+  0x10002e375df0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375e00: 00 00 00 00 f1 f1 f1 f1 00 00 00 f3 f3 f3 f3 f3
+  0x10002e375e10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375e20: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x10002e375e30: 00 00 00 00 f1 f1 f1 f1 00 00 f2 f2 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==74429==ABORTING

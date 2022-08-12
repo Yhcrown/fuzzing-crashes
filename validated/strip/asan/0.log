@@ -1,45 +1,45 @@
 =================================================================
-==20873==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000131 at pc 0x55fea3c3bcc5 bp 0x7ffe4d2eee20 sp 0x7ffe4d2eee18
-READ of size 1 at 0x602000000131 thread T0
-    #0 0x55fea3c3bcc4 in bfd_getl32 (/workspace/binutils-2.38/binutils/strip-new+0x262cc4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #1 0x55fea3ed9463 in coff_set_section_contents pe-x86_64.c
-    #2 0x55fea3c46d68 in bfd_set_section_contents (/workspace/binutils-2.38/binutils/strip-new+0x26dd68) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #3 0x55fea3bb92fc in copy_section objcopy.c
-    #4 0x55fea3c467da in bfd_map_over_sections (/workspace/binutils-2.38/binutils/strip-new+0x26d7da) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #5 0x55fea3bafcbb in copy_object objcopy.c
-    #6 0x55fea3baa0df in copy_file objcopy.c
-    #7 0x55fea3ba42d6 in strip_main objcopy.c
-    #8 0x55fea3ba3661 in main (/workspace/binutils-2.38/binutils/strip-new+0x1ca661) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #9 0x7f32a5cacd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
-    #10 0x7f32a5cace3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
-    #11 0x55fea3ae55b4 in _start (/workspace/binutils-2.38/binutils/strip-new+0x10c5b4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+==130497==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x6020000000f1 at pc 0x556dbdbf5de5 bp 0x7ffee7a158c0 sp 0x7ffee7a158b8
+READ of size 1 at 0x6020000000f1 thread T0
+    #0 0x556dbdbf5de4 in bfd_getl32 (/workspace/test/binutils-gdb/binutils/strip-new+0x25fde4) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #1 0x556dbde98083 in coff_set_section_contents pe-x86_64.c
+    #2 0x556dbdc01038 in bfd_set_section_contents (/workspace/test/binutils-gdb/binutils/strip-new+0x26b038) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #3 0x556dbdb7303c in copy_section objcopy.c
+    #4 0x556dbdc00aaa in bfd_map_over_sections (/workspace/test/binutils-gdb/binutils/strip-new+0x26aaaa) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #5 0x556dbdb69abb in copy_object objcopy.c
+    #6 0x556dbdb6400f in copy_file objcopy.c
+    #7 0x556dbdb5e2d6 in strip_main objcopy.c
+    #8 0x556dbdb5d661 in main (/workspace/test/binutils-gdb/binutils/strip-new+0x1c7661) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #9 0x7f515d81ed8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #10 0x7f515d81ee3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #11 0x556dbda9f5b4 in _start (/workspace/test/binutils-gdb/binutils/strip-new+0x1095b4) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
 
-0x602000000131 is located 0 bytes to the right of 1-byte region [0x602000000130,0x602000000131)
+0x6020000000f1 is located 0 bytes to the right of 1-byte region [0x6020000000f0,0x6020000000f1)
 allocated by thread T0 here:
-    #0 0x55fea3b683fe in __interceptor_malloc (/workspace/binutils-2.38/binutils/strip-new+0x18f3fe) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #1 0x55fea3c3ad02 in bfd_malloc (/workspace/binutils-2.38/binutils/strip-new+0x261d02) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #2 0x55fea3c2abf0 in bfd_get_full_section_contents (/workspace/binutils-2.38/binutils/strip-new+0x251bf0) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #3 0x55fea3bb8a9b in copy_section objcopy.c
-    #4 0x55fea3c467da in bfd_map_over_sections (/workspace/binutils-2.38/binutils/strip-new+0x26d7da) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #5 0x55fea3bafcbb in copy_object objcopy.c
-    #6 0x55fea3baa0df in copy_file objcopy.c
-    #7 0x55fea3ba42d6 in strip_main objcopy.c
-    #8 0x55fea3ba3661 in main (/workspace/binutils-2.38/binutils/strip-new+0x1ca661) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
-    #9 0x7f32a5cacd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #0 0x556dbdb223fe in __interceptor_malloc (/workspace/test/binutils-gdb/binutils/strip-new+0x18c3fe) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #1 0x556dbdbf4e22 in bfd_malloc (/workspace/test/binutils-gdb/binutils/strip-new+0x25ee22) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #2 0x556dbdbe4d40 in bfd_get_full_section_contents (/workspace/test/binutils-gdb/binutils/strip-new+0x24ed40) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #3 0x556dbdb727db in copy_section objcopy.c
+    #4 0x556dbdc00aaa in bfd_map_over_sections (/workspace/test/binutils-gdb/binutils/strip-new+0x26aaaa) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #5 0x556dbdb69abb in copy_object objcopy.c
+    #6 0x556dbdb6400f in copy_file objcopy.c
+    #7 0x556dbdb5e2d6 in strip_main objcopy.c
+    #8 0x556dbdb5d661 in main (/workspace/test/binutils-gdb/binutils/strip-new+0x1c7661) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81)
+    #9 0x7f515d81ed8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
 
-SUMMARY: AddressSanitizer: heap-buffer-overflow (/workspace/binutils-2.38/binutils/strip-new+0x262cc4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a) in bfd_getl32
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/workspace/test/binutils-gdb/binutils/strip-new+0x25fde4) (BuildId: 35a9c6af570fac13ead5254910cec2f0379f6e81) in bfd_getl32
 Shadow bytes around the buggy address:
+  0x0c047fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
   0x0c047fff8000: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa
-  0x0c047fff8010: fa fa 00 01 fa fa fd fa fa fa 00 fa fa fa fd fa
-=>0x0c047fff8020: fa fa fd fa fa fa[01]fa fa fa fa fa fa fa fa fa
+=>0x0c047fff8010: fa fa 00 01 fa fa fd fa fa fa 00 fa fa fa[01]fa
+  0x0c047fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
   0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
   0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
   0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
   0x0c047fff8060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
-  0x0c047fff8070: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
 Shadow byte legend (one shadow byte represents 8 application bytes):
   Addressable:           00
   Partially addressable: 01 02 03 04 05 06 07 
@@ -59,4 +59,4 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   ASan internal:           fe
   Left alloca redzone:     ca
   Right alloca redzone:    cb
-==20873==ABORTING
+==130497==ABORTING

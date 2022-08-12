@@ -1,0 +1,1 @@
+[1]    12826 illegal hardware instruction (core dumped)  binutils-2.38/binutils/strip-new -o tmp 

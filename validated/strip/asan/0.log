@@ -1,0 +1,62 @@
+=================================================================
+==20873==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x602000000131 at pc 0x55fea3c3bcc5 bp 0x7ffe4d2eee20 sp 0x7ffe4d2eee18
+READ of size 1 at 0x602000000131 thread T0
+    #0 0x55fea3c3bcc4 in bfd_getl32 (/workspace/binutils-2.38/binutils/strip-new+0x262cc4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #1 0x55fea3ed9463 in coff_set_section_contents pe-x86_64.c
+    #2 0x55fea3c46d68 in bfd_set_section_contents (/workspace/binutils-2.38/binutils/strip-new+0x26dd68) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #3 0x55fea3bb92fc in copy_section objcopy.c
+    #4 0x55fea3c467da in bfd_map_over_sections (/workspace/binutils-2.38/binutils/strip-new+0x26d7da) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #5 0x55fea3bafcbb in copy_object objcopy.c
+    #6 0x55fea3baa0df in copy_file objcopy.c
+    #7 0x55fea3ba42d6 in strip_main objcopy.c
+    #8 0x55fea3ba3661 in main (/workspace/binutils-2.38/binutils/strip-new+0x1ca661) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #9 0x7f32a5cacd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #10 0x7f32a5cace3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #11 0x55fea3ae55b4 in _start (/workspace/binutils-2.38/binutils/strip-new+0x10c5b4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+
+0x602000000131 is located 0 bytes to the right of 1-byte region [0x602000000130,0x602000000131)
+allocated by thread T0 here:
+    #0 0x55fea3b683fe in __interceptor_malloc (/workspace/binutils-2.38/binutils/strip-new+0x18f3fe) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #1 0x55fea3c3ad02 in bfd_malloc (/workspace/binutils-2.38/binutils/strip-new+0x261d02) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #2 0x55fea3c2abf0 in bfd_get_full_section_contents (/workspace/binutils-2.38/binutils/strip-new+0x251bf0) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #3 0x55fea3bb8a9b in copy_section objcopy.c
+    #4 0x55fea3c467da in bfd_map_over_sections (/workspace/binutils-2.38/binutils/strip-new+0x26d7da) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #5 0x55fea3bafcbb in copy_object objcopy.c
+    #6 0x55fea3baa0df in copy_file objcopy.c
+    #7 0x55fea3ba42d6 in strip_main objcopy.c
+    #8 0x55fea3ba3661 in main (/workspace/binutils-2.38/binutils/strip-new+0x1ca661) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a)
+    #9 0x7f32a5cacd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow (/workspace/binutils-2.38/binutils/strip-new+0x262cc4) (BuildId: 570d2b80772ad754fa2efc6225fcda71f13a0a6a) in bfd_getl32
+Shadow bytes around the buggy address:
+  0x0c047fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c047fff8000: fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa
+  0x0c047fff8010: fa fa 00 01 fa fa fd fa fa fa 00 fa fa fa fd fa
+=>0x0c047fff8020: fa fa fd fa fa fa[01]fa fa fa fa fa fa fa fa fa
+  0x0c047fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c047fff8070: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==20873==ABORTING

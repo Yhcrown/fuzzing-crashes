@@ -1,0 +1,23 @@
+/workspace/crash/cyclonedds/check_build/bin/idlc/92:14:6: Extra tokens at end of line marker
+=================================================================
+==44289==ERROR: AddressSanitizer: negative-size-param: (size=-1)
+    #0 0x55adf04d2e4c in __asan_memmove (/workspace/test/cyclonedds/bin/idlc+0xc5e4c) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x55adf051084c in idlc_putn /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:97:5
+    #2 0x55adf051026b in idlc_putc /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:141:13
+    #3 0x55adf054147a in parse_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1719:25
+    #4 0x55adf053cc6a in get_ch /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1580:13
+    #5 0x55adf05344a9 in mcpp_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:637:17
+    #6 0x55adf05344a9 in mcpp_lib_main /workspace/test/cyclonedds/src/tools/idlpp/src/main.c:430:5
+    #7 0x55adf050f579 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:331:9
+    #8 0x55adf050ec84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #9 0x7fb8bd0f3d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #10 0x7fb8bd0f3e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #11 0x55adf04508e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+0x621000003900 is located 4096 bytes inside of 4098-byte region [0x621000002900,0x621000003902)
+allocated by thread T0 here:
+    #0 0x55adf04d3b56 in __interceptor_realloc (/workspace/test/cyclonedds/bin/idlc+0xc6b56) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x55adf0510987 in idlc_putn /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:108:17
+
+SUMMARY: AddressSanitizer: negative-size-param (/workspace/test/cyclonedds/bin/idlc+0xc5e4c) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e) in __asan_memmove
+==44289==ABORTING

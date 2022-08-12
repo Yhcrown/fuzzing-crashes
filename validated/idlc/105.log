@@ -1,0 +1,22 @@
+/workspace/crash/cyclonedds/check_build/bin/idlc/105:1: warning: End of input with no newline, supplemented newline
+#1"="00000���11111111111111111:::::::::::::::::::::::;:::::::::::::::::::::9:::::::::::S::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#1::::::::::#::::::::::::::::::z::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::111111
+/workspace/crash/cyclonedds/check_build/bin/idlc/105:4:11: Extra tokens at end of line marker
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==68523==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x56495b574405 bp 0x7ffc0bcebcb0 sp 0x7ffc0bceb460 T0)
+==68523==The signal is caused by a READ memory access.
+==68523==Hint: address points to the zero page.
+    #0 0x56495b574405 in strcmp (/workspace/test/cyclonedds/bin/idlc+0x5a405) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x7fcc380ee412 in push_file /workspace/test/cyclonedds/src/idl/src/directive.c:60:18
+    #2 0x7fcc380ee412 in push_line /workspace/test/cyclonedds/src/idl/src/directive.c:177:16
+    #3 0x7fcc380ec1b8 in idl_parse_directive /workspace/test/cyclonedds/src/idl/src/directive.c:604:12
+    #4 0x7fcc380f716a in idl_parse /workspace/test/cyclonedds/src/idl/src/processor.c:529:15
+    #5 0x56495b61c730 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:372:11
+    #6 0x56495b61bc84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #7 0x7fcc379ecd8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #8 0x7fcc379ece3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #9 0x56495b55d8e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/test/cyclonedds/bin/idlc+0x5a405) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e) in strcmp
+==68523==ABORTING

@@ -1,0 +1,22 @@
+TIFFReadDirectoryCheckOrder: Warning, Invalid TIFF directory; tags are not sorted in ascending order.
+TIFFReadDirectory: Warning, Unknown field with tag 535 (0x217) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 7168 (0x1c00) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 5120 (0x1400) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 2560 (0xa00) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 512 (0x200) encountered.
+TIFFFetchNormalTag: Warning, ASCII value for tag "ImageDescription" contains null byte in value; value incorrectly truncated during reading due to implementation limitations.
+TIFFReadDirectory: Warning, Sum of Photometric type-related color channels and ExtraSamples doesn't match SamplesPerPixel. Defining non-color channels as ExtraSamples..
+TIFFReadDirectory: Warning, TIFF directory is missing required "StripByteCounts" field, calculating from imagelength.
+==123690==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x7f6dd8c5c0a9 in EstimateStripByteCounts tif_dirread.c
+    #1 0x7f6dd8c303a5 in TIFFReadDirectory (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x6e3a5) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #2 0x7f6dd8e1f2d1 in TIFFClientOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x25d2d1) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #3 0x7f6dd8eb88a8 in TIFFFdOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x2f68a8) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #4 0x7f6dd8ebac06 in TIFFOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x2f8c06) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #5 0x55695410f65c in main (/workspace/test/msan/libtiff/check_build/tools/tiffset+0xa465c) (BuildId: 36aca5ba93bc914dbc32d590223f32f43784f34f)
+    #6 0x7f6dd88b3d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #7 0x7f6dd88b3e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #8 0x556954089404 in _start (/workspace/test/msan/libtiff/check_build/tools/tiffset+0x1e404) (BuildId: 36aca5ba93bc914dbc32d590223f32f43784f34f)
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value tif_dirread.c in EstimateStripByteCounts
+Exiting

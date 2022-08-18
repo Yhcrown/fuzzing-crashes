@@ -1,0 +1,12 @@
+==118561==WARNING: MemorySanitizer: use-of-uninitialized-value
+    #0 0x7f3495cbd187 in _tiffMapProc tif_unix.c
+    #1 0x7f3495c21eb2 in TIFFClientOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x25ceb2) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #2 0x7f3495cbb8a8 in TIFFFdOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x2f68a8) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #3 0x7f3495cbdc06 in TIFFOpen (/workspace/test/msan/libtiff/check_build/libtiff/libtiff.so.6+0x2f8c06) (BuildId: e4c4f34b1690d6dd0268b37acfe53aaa32dc9647)
+    #4 0x5598239efba1 in main (/workspace/test/msan/libtiff/check_build/tools/tiffsplit+0xa4ba1) (BuildId: 9b5c6d6c2ac16ac28374012c3783c9ee18004ad7)
+    #5 0x7f34956b6d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #6 0x7f34956b6e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #7 0x5598239693f4 in _start (/workspace/test/msan/libtiff/check_build/tools/tiffsplit+0x1e3f4) (BuildId: 9b5c6d6c2ac16ac28374012c3783c9ee18004ad7)
+
+SUMMARY: MemorySanitizer: use-of-uninitialized-value tif_unix.c in _tiffMapProc
+Exiting

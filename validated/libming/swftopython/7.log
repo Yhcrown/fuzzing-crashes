@@ -1,0 +1,37 @@
+header indicates a filesize of 140 but filesize is 165
+#!/usr/bin/python
+from ming import *
+
+Ming_useSWFVersion(7);
+
+m =  SWFMovie();
+
+Ming_setScale(1.0);
+m.setDimension(11000, 8000);
+
+# SWF_DOACTION 
+    27:SWFACTION_CONSTANTPOOL
+     [000] message
+     [001] createTextField
+     [002] text
+     [003] Hello World!
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==73133==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000010 (pc 0x0000004e65e8 bp 0x7ffd2c2a5ca0 sp 0x7ffd2c2a5b60 T0)
+==73133==The signal is caused by a READ memory access.
+==73133==Hint: address points to the zero page.
+    #0 0x4e65e8 in getName (/workspace/check/libming/util/swftopython+0x4e65e8)
+    #1 0x4dd3a0 in decompileRETURN (/workspace/check/libming/util/swftopython+0x4dd3a0)
+    #2 0x4d8a77 in decompileAction (/workspace/check/libming/util/swftopython+0x4d8a77)
+    #3 0x4e5d75 in decompileActions (/workspace/check/libming/util/swftopython+0x4e5d75)
+    #4 0x4e5c53 in decompile5Action (/workspace/check/libming/util/swftopython+0x4e5c53)
+    #5 0x4d0954 in outputSWF_DOACTION (/workspace/check/libming/util/swftopython+0x4d0954)
+    #6 0x4ce7ac in outputBlock (/workspace/check/libming/util/swftopython+0x4ce7ac)
+    #7 0x4d61de in readMovie (/workspace/check/libming/util/swftopython+0x4d61de)
+    #8 0x4d5180 in main (/workspace/check/libming/util/swftopython+0x4d5180)
+    #9 0x7fdfcba680b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #10 0x41b3cd in _start (/workspace/check/libming/util/swftopython+0x41b3cd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/check/libming/util/swftopython+0x4e65e8) in getName
+==73133==ABORTING

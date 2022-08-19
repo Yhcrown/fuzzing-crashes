@@ -1,0 +1,77 @@
+header indicates a filesize of 140 but filesize is 138
+File version: 7
+File size: 138
+Frame size: (0,11000)x(0,8000)
+Frame rate: 12.000000 / sec.
+Total frames: 1
+
+Offset: 21 (0x0015)
+Block type: 12 (SWF_DOACTION)
+Block length: 109
+
+    27:SWFACTION_CONSTANTPOOL
+     [000] message
+     [001] createTextField
+     [002] text
+     [003] Hello World!
+WARNING: retrieving constants not present in the pool.
+WARNING: retrieving constants not present in the pool.
+WARNING: retrieving constants not present in the pool.
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==74885==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x0000004ed36f bp 0x7ffeed9ee470 sp 0x7ffeed9ee120 T0)
+==74885==The signal is caused by a READ memory access.
+==74885==Hint: address points to the zero page.
+    #0 0x4ed36f in getString (/workspace/check/libming/util/listaction_d+0x4ed36f)
+    #1 0x4eed72 in newVar_N (/workspace/check/libming/util/listaction_d+0x4eed72)
+    #2 0x4dfaf2 in decompileNEWOBJECT (/workspace/check/libming/util/listaction_d+0x4dfaf2)
+    #3 0x4de0d1 in decompileAction (/workspace/check/libming/util/listaction_d+0x4de0d1)
+    #4 0x4eb515 in decompileActions (/workspace/check/libming/util/listaction_d+0x4eb515)
+    #5 0x4eb3f3 in decompile5Action (/workspace/check/libming/util/listaction_d+0x4eb3f3)
+    #6 0x4d26fe in outputSWF_DOACTION (/workspace/check/libming/util/listaction_d+0x4d26fe)
+    #7 0x4d1daf in outputBlock (/workspace/check/libming/util/listaction_d+0x4d1daf)
+    #8 0x4db97e in readMovie (/workspace/check/libming/util/listaction_d+0x4db97e)
+    #9 0x4da920 in main (/workspace/check/libming/util/listaction_d+0x4da920)
+    #10 0x7fac4589e0b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #11 0x41b3ad in _start (/workspace/check/libming/util/listaction_d+0x41b3ad)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/check/libming/util/listaction_d+0x4ed36f) in getString
+==74885==ABORTING
+➜  util git:(master) ./listaction_d /workspace/crash/test/libming/util/listaction_d/3
+header indicates a filesize of 140 but filesize is 163
+File version: 7
+File size: 163
+Frame size: (0,11000)x(0,7488)
+Frame rate: 12.000000 / sec.
+Total frames: 1
+
+Offset: 21 (0x0015)
+Block type: 12 (SWF_DOACTION)
+Block length: 109
+
+    27:SWFACTION_CONSTANTPOOL
+     [000] message
+     [001] createTZxtField
+     [002] Sext
+     [003] Hello World!
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==85080==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x0000004ec135 bp 0x7ffd36eb0fd0 sp 0x7ffd36eb0e90 T0)
+==85080==The signal is caused by a READ memory access.
+==85080==Hint: address points to the zero page.
+    #0 0x4ec135 in getName (/workspace/check/libming/util/listaction_d+0x4ec135)
+    #1 0x4dfb45 in decompileNEWMETHOD (/workspace/check/libming/util/listaction_d+0x4dfb45)
+    #2 0x4de0ec in decompileAction (/workspace/check/libming/util/listaction_d+0x4de0ec)
+    #3 0x4eb515 in decompileActions (/workspace/check/libming/util/listaction_d+0x4eb515)
+    #4 0x4eb3f3 in decompile5Action (/workspace/check/libming/util/listaction_d+0x4eb3f3)
+    #5 0x4d26fe in outputSWF_DOACTION (/workspace/check/libming/util/listaction_d+0x4d26fe)
+    #6 0x4d1daf in outputBlock (/workspace/check/libming/util/listaction_d+0x4d1daf)
+    #7 0x4db97e in readMovie (/workspace/check/libming/util/listaction_d+0x4db97e)
+    #8 0x4da920 in main (/workspace/check/libming/util/listaction_d+0x4da920)
+    #9 0x7f4abf61f0b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #10 0x41b3ad in _start (/workspace/check/libming/util/listaction_d+0x41b3ad)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/check/libming/util/listaction_d+0x4ec135) in getName
+==85080==ABORTING

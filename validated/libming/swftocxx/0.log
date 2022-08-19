@@ -1,0 +1,39 @@
+header indicates a filesize of 140 but filesize is 138
+#include <mingpp.h>
+
+
+int main(){
+SWFMovie* m = new SWFMovie(7);
+
+Ming_setScale(1.0);
+m->setDimension(10240, 304);
+
+// Note: xMin and/or yMin are not 0! 
+
+
+// SWF_DOACTION 
+    27:SWFACTION_CONSTANTPOOL
+     [000] mesatg^
+     [001] cresaeTextField
+     [002] text
+     [003] Hello W]rld!
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==23852==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x0000004e6f45 bp 0x7ffe8e38dca0 sp 0x7ffe8e38db60 T0)
+==23852==The signal is caused by a READ memory access.
+==23852==Hint: address points to the zero page.
+    #0 0x4e6f45 in getName (/workspace/check/libming/util/swftocxx+0x4e6f45)
+    #1 0x4daa6f in decompileGETMEMBER (/workspace/check/libming/util/swftocxx+0x4daa6f)
+    #2 0x4d8f17 in decompileAction (/workspace/check/libming/util/swftocxx+0x4d8f17)
+    #3 0x4e6325 in decompileActions (/workspace/check/libming/util/swftocxx+0x4e6325)
+    #4 0x4e6203 in decompile5Action (/workspace/check/libming/util/swftocxx+0x4e6203)
+    #5 0x4d0e44 in outputSWF_DOACTION (/workspace/check/libming/util/swftocxx+0x4d0e44)
+    #6 0x4cec9c in outputBlock (/workspace/check/libming/util/swftocxx+0x4cec9c)
+    #7 0x4d678e in readMovie (/workspace/check/libming/util/swftocxx+0x4d678e)
+    #8 0x4d5730 in main (/workspace/check/libming/util/swftocxx+0x4d5730)
+    #9 0x7f48a283b0b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #10 0x41b3cd in _start (/workspace/check/libming/util/swftocxx+0x41b3cd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/check/libming/util/swftocxx+0x4e6f45) in getName
+==23852==ABORTING

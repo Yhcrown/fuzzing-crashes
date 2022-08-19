@@ -1,0 +1,37 @@
+header indicates a filesize of 140 but filesize is 138
+load mingc.so mingc
+set m [newSWFMovie]
+#set m [newSWFMovie](7);
+
+#add setscale here
+setDimension $m (-5119, 8000);
+
+# Note: xMin and/or yMin are not 0! 
+
+
+# SWF_DOACTION 
+    27:SWFACTION_CONSTANTPOOL
+     [000] message
+     [001] c=�teTzxtField
+     [002] text
+     [003] be��o Wrrld!
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==15266==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x0000004e7a6f bp 0x7fff31327db0 sp 0x7fff31327a60 T0)
+==15266==The signal is caused by a READ memory access.
+==15266==Hint: address points to the zero page.
+    #0 0x4e7a6f in getString (/workspace/check/libming/util/swftotcl+0x4e7a6f)
+    #1 0x4e4cd8 in decompileSETTARGET (/workspace/check/libming/util/swftotcl+0x4e4cd8)
+    #2 0x4d8cf8 in decompileAction (/workspace/check/libming/util/swftotcl+0x4d8cf8)
+    #3 0x4e5c15 in decompileActions (/workspace/check/libming/util/swftotcl+0x4e5c15)
+    #4 0x4e5af3 in decompile5Action (/workspace/check/libming/util/swftotcl+0x4e5af3)
+    #5 0x4d07e4 in outputSWF_DOACTION (/workspace/check/libming/util/swftotcl+0x4d07e4)
+    #6 0x4ce63c in outputBlock (/workspace/check/libming/util/swftotcl+0x4ce63c)
+    #7 0x4d607e in readMovie (/workspace/check/libming/util/swftotcl+0x4d607e)
+    #8 0x4d5020 in main (/workspace/check/libming/util/swftotcl+0x4d5020)
+    #9 0x7f79e43430b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #10 0x41b3cd in _start (/workspace/check/libming/util/swftotcl+0x41b3cd)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/workspace/check/libming/util/swftotcl+0x4e7a6f) in getString
+==15266==ABORTING

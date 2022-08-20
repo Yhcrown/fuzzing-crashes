@@ -1,0 +1,25 @@
+Success. Written thumbnail image to '0.bmp'
+=================================================================
+==82075==ERROR: AddressSanitizer: attempting double-free on 0x6040000051d0 in thread T0:
+    #0 0x5584dfc9c002 in free (/workspace/libredwg/programs/dwgbmp+0x19d002) (BuildId: ec27550ef88545eef0fdc77a46b25d158c3c8aa8)
+    #1 0x5584e0069372 in dwg_free_XRECORD_private /workspace/libredwg/src/./dwg.spec:6792:3
+    #2 0x5584dffb7302 in dwg_free_XRECORD /workspace/libredwg/src/./dwg.spec:6739:1
+    #3 0x5584e006bfde in dwg_free_object /workspace/libredwg/src/free.c:1060:7
+    #4 0x5584e006e906 in dwg_free /workspace/libredwg/src/free.c:1512:13
+    #5 0x5584dfcd8121 in get_bmp /workspace/libredwg/programs/dwgbmp.c
+    #6 0x5584dfcd8121 in main /workspace/libredwg/programs/dwgbmp.c:301:11
+    #7 0x7f6d1a2b0d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #8 0x7f6d1a2b0e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #9 0x5584dfc19464 in _start (/workspace/libredwg/programs/dwgbmp+0x11a464) (BuildId: ec27550ef88545eef0fdc77a46b25d158c3c8aa8)
+
+0x6040000051d0 is located 0 bytes inside of 48-byte region [0x6040000051d0,0x604000005200)
+freed by thread T0 here:
+    #0 0x5584dfc9c002 in free (/workspace/libredwg/programs/dwgbmp+0x19d002) (BuildId: ec27550ef88545eef0fdc77a46b25d158c3c8aa8)
+    #1 0x5584dfe3c45c in dwg_decode_XRECORD_private /workspace/libredwg/src/./dwg.spec:6781:17
+
+previously allocated by thread T0 here:
+    #0 0x5584dfc9c2ae in __interceptor_malloc (/workspace/libredwg/programs/dwgbmp+0x19d2ae) (BuildId: ec27550ef88545eef0fdc77a46b25d158c3c8aa8)
+    #1 0x5584dfe3c0f6 in dwg_decode_XRECORD_private /workspace/libredwg/src/./dwg.spec:6776:27
+
+SUMMARY: AddressSanitizer: double-free (/workspace/libredwg/programs/dwgbmp+0x19d002) (BuildId: ec27550ef88545eef0fdc77a46b25d158c3c8aa8) in free
+==82075==ABORTING

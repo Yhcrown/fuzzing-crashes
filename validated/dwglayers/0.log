@@ -1,0 +1,2 @@
+dwglayers: dwglayers.c:166: int main(int, char **): Assertion `_ctrl->entries[i]' failed.
+[1]    113287 IOT instruction  ./libredwg/programs/dwglayers crash-redwg/libredwg/programs/dwglayers/0

@@ -1,0 +1,68 @@
+/workspace/crash-idlc/cyclonedds/check_build/bin/idlc/206:3:109: Integer expression overflows
+=================================================================
+==85416==ERROR: AddressSanitizer: heap-use-after-free on address 0x60e0000014b0 at pc 0x7f4e29032fe4 bp 0x7fff0bce6ca0 sp 0x7fff0bce6c98
+READ of size 4 at 0x60e0000014b0 thread T0
+    #0 0x7f4e29032fe3 in idl_reference_node /workspace/test/cyclonedds/src/idl/src/tree.c:48:37
+    #1 0x7f4e2904c744 in idl_yypush_parse /workspace/test/cyclonedds/src/idl/src/parser.y:1050:24
+    #2 0x7f4e29022214 in parse_grammar /workspace/test/cyclonedds/src/idl/src/processor.c:327:11
+    #3 0x7f4e29022214 in idl_parse /workspace/test/cyclonedds/src/idl/src/processor.c:535:15
+    #4 0x555c65b57730 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:372:11
+    #5 0x555c65b56c84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #6 0x7f4e28916d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #7 0x7f4e28916e3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #8 0x555c65a988e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+0x60e0000014b0 is located 80 bytes inside of 152-byte region [0x60e000001460,0x60e0000014f8)
+freed by thread T0 here:
+    #0 0x555c65b1b482 in free (/workspace/test/cyclonedds/bin/idlc+0xc6482) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x7f4e29033216 in idl_delete_node /workspace/test/cyclonedds/src/idl/src/tree.c:369:7
+    #2 0x7f4e29022214 in parse_grammar /workspace/test/cyclonedds/src/idl/src/processor.c:327:11
+    #3 0x7f4e29022214 in idl_parse /workspace/test/cyclonedds/src/idl/src/processor.c:535:15
+    #4 0x555c65b587ae in idlc_putn /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:92:20
+    #5 0x555c65b8947a in parse_line /workspace/test/cyclonedds/src/tools/idlpp/src/support.c:1719:25
+
+previously allocated by thread T0 here:
+    #0 0x555c65b1b918 in __interceptor_calloc (/workspace/test/cyclonedds/bin/idlc+0xc6918) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+    #1 0x7f4e29040f30 in create_node /workspace/test/cyclonedds/src/idl/src/tree.c:308:16
+    #2 0x7f4e29040f30 in idl_create_annotation /workspace/test/cyclonedds/src/idl/src/tree.c:3300:14
+    #3 0x7f4e2904d4d0 in idl_yypush_parse /workspace/test/cyclonedds/src/idl/src/parser.y:972:9
+    #4 0x7f4e29020f9e in parse_grammar /workspace/test/cyclonedds/src/idl/src/processor.c:327:11
+    #5 0x7f4e29020f9e in parse_builtin_annotations /workspace/test/cyclonedds/src/idl/src/processor.c:82:15
+    #6 0x7f4e2902080b in idl_create_pstate /workspace/test/cyclonedds/src/idl/src/processor.c:163:16
+    #7 0x555c65b570f8 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:283:16
+    #8 0x555c65b56c84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #9 0x7f4e28916d8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+
+SUMMARY: AddressSanitizer: heap-use-after-free /workspace/test/cyclonedds/src/idl/src/tree.c:48:37 in idl_reference_node
+Shadow bytes around the buggy address:
+  0x0c1c7fff8240: fd fd fd fd fd fd fd fd fd fd fd fa fa fa fa fa
+  0x0c1c7fff8250: fa fa fa fa fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c1c7fff8260: fd fd fd fd fd fd fd fa fa fa fa fa fa fa fa fa
+  0x0c1c7fff8270: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c1c7fff8280: fd fd fd fa fa fa fa fa fa fa fa fa fd fd fd fd
+=>0x0c1c7fff8290: fd fd fd fd fd fd[fd]fd fd fd fd fd fd fd fd fa
+  0x0c1c7fff82a0: fa fa fa fa fa fa fa fa fd fd fd fd fd fd fd fd
+  0x0c1c7fff82b0: fd fd fd fd fd fd fd fd fd fd fd fd fa fa fa fa
+  0x0c1c7fff82c0: fa fa fa fa fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c1c7fff82d0: fd fd fd fd fd fd fd fa fa fa fa fa fa fa fa fa
+  0x0c1c7fff82e0: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==85416==ABORTING

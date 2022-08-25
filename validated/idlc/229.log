@@ -1,0 +1,37 @@
+/workspace/crash-idlc/cyclonedds/check_build/bin/idlc/229:1: warning: End of input with no newline, supplemented newline
+#999""ruct M=|=iD0V//p� �/00VL/�1
+#999"" 0=|=iD0V//p� �/00V//�1
+
+
+#999""/00V//�1
+
+      2
+
+
+
+
+
+       nTnnnn nnnn�\n *.6.???????
+
+
+                                 nTn
+/workspace/crash-idlc/cyclonedds/check_build/bin/idlc/229:2:10: Extra tokens at end of line marker
+:999:10: Extra tokens at end of line marker
+:999:16: Extra tokens at end of line marker
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==33456==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000028 (pc 0x7fc1f77cd6f7 bp 0x7ffd3ee93310 sp 0x7ffd3ee931c0 T0)
+==33456==The signal is caused by a READ memory access.
+==33456==Hint: address points to the zero page.
+    #0 0x7fc1f77cd6f7 in push_line /workspace/test/cyclonedds/src/idl/src/directive.c
+    #1 0x7fc1f77cb1b8 in idl_parse_directive /workspace/test/cyclonedds/src/idl/src/directive.c:604:12
+    #2 0x7fc1f77d616a in idl_parse /workspace/test/cyclonedds/src/idl/src/processor.c:529:15
+    #3 0x55582976f730 in idlc_parse /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:372:11
+    #4 0x55582976ec84 in main /workspace/test/cyclonedds/src/tools/idlc/src/idlc.c:703:16
+    #5 0x7fc1f70cad8f  (/lib/x86_64-linux-gnu/libc.so.6+0x29d8f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #6 0x7fc1f70cae3f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e3f) (BuildId: 69389d485a9793dbe873f0ea2c93e02efaa9aa3d)
+    #7 0x5558296b08e4 in _start (/workspace/test/cyclonedds/bin/idlc+0x438e4) (BuildId: e526cf43a1a1020257bfd1c9437645cac70cf01e)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /workspace/test/cyclonedds/src/idl/src/directive.c in push_line
+==33456==ABORTING
